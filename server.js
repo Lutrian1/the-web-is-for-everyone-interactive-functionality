@@ -25,14 +25,13 @@ app.set('views', './views')
 
 app.get('/', async function (request, response) {
 
-  const milledoniData = await fetch('https://fdnd-agency.directus.app/items/milledoni_products') // Luuk: Pas dit aan naar een filter voor de homepage dus soorteren op saves bijv /)
+  const milledoniProducts = await fetch('https://fdnd-agency.directus.app/items/milledoni_products')
 
   // En haal daarvan de JSON op
-  const milledoniDataJSON = await milledoniData.json()
+  const milledoniProductsJSON = await milledoniProducts.json()
    // Render index.liquid uit de Views map
    // Geef hier eventueel data aan mee
-   response.render('index.liquid' , {allData: milledoniDataJSON.data })
-   console.log(allData)  
+   response.render('index.liquid' , {allMilledoniProducts: milledoniProductsJSON.data })
 })
 
 app.get('/gift/:id', async function (request, response) {
@@ -78,8 +77,6 @@ app.get('/gift/{*splat}', function (request, response) {
 app.get('/{*splat}', function (request, response) {
   response.status(404).render('404.liquid');
 }); 
-
-console.log('Pages Loaded')
 
 /*
 // Zie https://expressjs.com/en/5x/api.html#app.get.method over app.get()

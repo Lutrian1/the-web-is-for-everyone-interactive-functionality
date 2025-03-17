@@ -29,7 +29,7 @@
                 <p>Register or Log in</p>
             </a>
         </article>
-        {% for gift in giftresult %}
+        {% for gift in allMilledoniProducts %}
             <article class="gift-Box">
                 <a href="/gift/{{ gift.id }}">
                     <form action="/save-gift" method="POST">
