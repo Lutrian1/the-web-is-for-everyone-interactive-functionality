@@ -32,7 +32,7 @@
         {% for gift in allMilledoniProducts %}
             <article class="gift-Box">
                 <a href="/gift/{{ gift.id }}">
-                    <form action="/save-gift" method="POST">
+                    <form action="/" method="POST">
                         <input type="hidden" name="giftId" value="{{ gift.id }}">
                         <button type="submit" class="add-List-Button" aria-label="Add to your List">+</button>
                     </form>
