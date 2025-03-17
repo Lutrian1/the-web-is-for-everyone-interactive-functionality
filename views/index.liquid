@@ -1,0 +1,54 @@
+{% render 'partials/head.liquid', title: 'Homepage', logo: '<a href="/" class="Logo" aria-label="Milledoni"><img src="/images/mainLogo.png" alt="" class="M"><img src="/images/restTextLogo.png" alt="" class="illedoni"></a>' , slogan: 'Finding and sharing gift ideas' %}
+
+<main>
+    <section class="chat-Tab">
+        <search class="search-Item-Box">
+            <form action="">
+                <h2>I'm looking for a gift for...</h2>
+                <img src="" alt="" class="mic-Icon">
+                <label>Search gifts</label>
+                <input type="search" id="search" name="search" />
+                <button type="submit" aria-label="Submit search">
+                    <img src="" alt="" class="magnifying-Glass">
+                </button>
+            </form>
+        </search>
+        <ul class="show-Active-Users-Box">
+            <li class="user1"><img src="/images/user1.png" alt=""></li>
+            <li class="user2"><img src="/images/user2.png" alt=""></li>
+            <li class="user3"><img src="/images/user3.png" alt=""></li>
+            <li class="user-Extra"><img src="/images/usersExtra.png" alt="Over +1 Million  Users"></li>
+            <li><p>Unisciti alla nostra community di spotters</p></li>
+        </ul>
+    </section>
+    <section class="results-Tab">
+        <article class="gift-Box-Create-List">
+            <a href="/profile">
+                <p>Create a list for your best friend</p>
+                <img src="/images/girl1.png" alt="">
+                <p>Register or Log in</p>
+            </a>
+        </article>
+        {% for gift in giftresult %}
+            <article class="gift-Box">
+                <a href="/gift/{{ gift.id }}">
+                    <form action="/save-gift" method="POST">
+                        <input type="hidden" name="giftId" value="{{ gift.id }}">
+                        <button type="submit" class="add-List-Button" aria-label="Add to your List">+</button>
+                    </form>
+                    <img src="{{ gift.image }}" alt="" class="cover-Image">
+                    <h3>{{ gift.name}}</h3>
+                    <p>Spotter: {{ gift.spotter }}</p>
+                    <footer class="bottom-Row">
+                        <img src="/images/girl1.png" alt="" class="user-Icon1">
+                        <img src="/images/user1.png" alt="" class="user-Icon2">
+                        <p>+{{ gift.saved }}Saved</p>
+                        <img src="/images/gifticon.png" alt="" class="gift-Icon">
+                        <p>+{{ gift.given }} Given</p>
+                    </footer>
+                </a>
+            </article>
+        {% endfor %}
+    </section>
+    <a href="/mysavedgifts">View Saved Items</a>
+</main>

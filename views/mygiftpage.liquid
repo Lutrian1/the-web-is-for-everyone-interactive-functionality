@@ -1,0 +1,22 @@
+{% render 'partials/head.liquid', title: 'My Liked Gifts', logo: '<a href="/" class="Logo" aria-label="Milledoni"><img src="/images/mainLogo.png" alt="" class="M"><img src="/images/restTextLogo.png" alt="" class="illedoni"></a>', slogan: 'Your saved gift ideas' %}
+
+<main>
+    <section class="liked-gifts">
+        <h2>Your Saved Gifts</h2>
+        {% if savedGifts.length > 0 %}
+            {% for gift in savedGifts %}
+                <article class="gift-Box">
+                    <a href="/gift/{{ gift.id }}">
+                        <img src="{{ gift.image }}" alt=""></li>
+                        <h3>{{ gift.name }}</h3>
+                        <p>{{ gift.spotter }}</p>
+                        <img src="/images/girl1.png" alt=""><img src="/images/user1.png" alt=""><p>+{{ gift.saved }}<p>Saved</p>
+                        <img src="/images/gifticon.png" alt=""><p>+{{ gift.given }}Given</p>
+                    </a>
+                </article>
+            {% endfor %}
+        {% else %}
+            <p>No gifts saved yet.</p>
+        {% endif %}
+    </section>
+</main>

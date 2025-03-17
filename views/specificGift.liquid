@@ -1,0 +1,54 @@
+{% render 'partials/head.liquid', title: 'Homepage', logo: '<a href="/" class="Logo" aria-label="Milledoni"><img src="/images/mainLogo.png" alt="" class="M"><img src="/images/restTextLogo.png" alt="" class="illedoni"></a>' , slogan: 'Finding and sharing gift ideas' %}
+ 
+<main>
+    <nav>
+        <a href="/" class="back-Button">
+            <p class="back-Arrow">↵</p>
+            <p>Back</p>
+        </a>
+    </nav>
+    <div class="left-Section">
+        <img src="{{ specificGift.image }}" alt="">
+    </div>
+    <div class="Right-Section">
+        <section class="top-Right-Section">
+            <h2>{{ specificGift.name }}</h2>
+            <form action="/save-gift" method="POST">
+                <input type="hidden" name="giftId" value="{{ gift.id }}">
+                <button type="submit" class="add-List-Button">+</button>
+            </form>
+            <dl class="show-Users">
+                <img src="/images/girl1.png" alt=""><img src="/images/user1.png" alt="">+{{ gift.saved }} <p>Saved</p>
+                <img src="/images/gifticon.png" alt="">+{{ gift.given }} <p>Given</p>
+            </dl>
+        </section>
+        <section class="middle-Right-Section">
+            <div class="part1">
+                <h2>Description</h2>
+                <p>{{ specificGift.description }}</p>
+            </div>
+            <div class="part2">
+                <div class="part2-Top-Box">
+                    <img src="/images/boxquestion.png" alt="">
+                    <p>WHY THIS GIFT The glue is non-toxic, so it's safe to eat or drink off repaired items. To retain the gold colour it is not advised to place items in the dishwasher.</p>
+                </div>
+                <div class="part2-Bottom-Box">
+                    <img src="/images/chefskiss.png" alt="">
+                    <p>GOOD TO KNOW One kit can repair approximately eight normal plates as per the images, with 3 full cracks.</p>
+                </div>
+            </div>
+        </section>
+        <section class="bottom-Right-Section">
+            
+        </section>
+        <h2>Where To Buy</h2>
+        <a href="{{ specificGift.shop_url }}">
+            <img src="" alt="">
+            <img src="/images/shopicon.png" alt="Buy item at {{ specificGift.shop_name }}">
+            <p>{{ specificGift.amount}}</p>
+            <p>{{ specificGift.shop_name }}</p>
+        </a>
+    </div>
+</main>
+
+

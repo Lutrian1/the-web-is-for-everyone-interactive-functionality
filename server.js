@@ -23,8 +23,63 @@ app.engine('liquid', engine.express());
 // Let op: de browser kan deze bestanden niet rechtstreeks laden (zoals voorheen met HTML bestanden)
 app.set('views', './views')
 
+app.get('/', async function (request, response) {
 
-console.log('Let op: Er zijn nog geen routes. Voeg hier dus eerst jouw GET en POST routes toe.')
+  const milledoniData = await fetch('https://fdnd-agency.directus.app/items/milledoni_products') // Luuk: Pas dit aan naar een filter voor de homepage dus soorteren op saves bijv /)
+
+  // En haal daarvan de JSON op
+  const milledoniDataJSON = await milledoniData.json()
+   // Render index.liquid uit de Views map
+   // Geef hier eventueel data aan mee
+   response.render('index.liquid' , {allData: milledoniDataJSON.data })
+   console.log(allData)  
+})
+
+app.get('/gift/:id', async function (request, response) {
+
+  const specificGiftResponse = await fetch(`https://fdnd-agency.directus.app/items/milledoni_products/${request.params.id}`);
+
+  const specificGiftResponseJSON = await specificGiftResponse.json();
+
+  response.render('specificGift.liquid', { specificGift: specificGiftResponseJSON.data });
+  
+});
+
+let savedGifts = [];
+
+// POST route om de gift op te slaan
+app.post('/save-gift', express.urlencoded({ extended: true }), async function (request, response) { //express zet het ruwe http format (kan je zien in console van browser) om naar een prettig json object
+    const giftId = request.body.giftId;
+
+    // Fetch gift details van API met giftId
+    const giftResponse = await fetch(`https://fdnd-agency.directus.app/items/milledoni_products/${giftId}`);
+    const giftData = await giftResponse.json();
+
+    // voeg toe aan de 'savedGifts' array
+    savedGifts.push(giftData.data);
+
+    // Redirect naar homepage (Doe dit voor meerdere pages, voor nu alleen index)
+    
+    response.redirect('/');
+});
+
+// Route om de likes te laten zien
+app.get('/mysavedgifts', function (request, response) {
+    response.render('mygiftpage.liquid', { savedGifts: savedGifts });
+});
+
+// Redirect invalide path van :id gift naar home
+
+app.get('/gift/{*splat}', function (request, response) {
+  response.redirect('/');
+});
+
+// Redirect alle invalide paths naar 404
+app.get('/{*splat}', function (request, response) {
+  response.status(404).render('404.liquid');
+}); 
+
+console.log('Pages Loaded')
 
 /*
 // Zie https://expressjs.com/en/5x/api.html#app.get.method over app.get()
