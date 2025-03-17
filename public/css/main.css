@@ -28,33 +28,29 @@ main {
             margin: 20px;
         }
 
-        .show-Active-Users-Box {
+        .show-Active-Users {
+            margin: 0;
+            padding: 0;
             display: flex;
 
-            ul {
-                margin: 0;
-                padding: 0;
-                display: flex;
+            img {
+                width: 60px;
+                height: 60px;
+            }
 
-                img {
-                    width: 60px;
-                    height: 60px;
-                }
+            .user2 {
+                left: -30px;
+                position: relative;
+            }
 
-                li.user2 {
-                    left: -30px;
-                    position: relative;
-                }
+            .user3 {
+                left: -65px;
+                position: relative;
+            }
 
-                li.user3 {
-                    left: -65px;
-                    position: relative;
-                }
-
-                li.user-Extra {
-                    left: 80px;
-                    position: absolute;
-                }
+            .user-Extra {
+                left: 80px;
+                position: absolute;
             }
         }
     }
