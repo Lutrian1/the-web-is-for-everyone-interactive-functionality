@@ -54,32 +54,17 @@ app.get('/gift/:id', async function (request, response) {
 
 //Daadwerkelijke code:
 app.post('/save-gift/:giftId', async function (request, response) {
-  const giftId = request.params.giftId; // Haal de giftId uit de URL
-  const userId = 6; // Hardcode mijn userId (id: 6)
 
-  // Haal de gebruiker op uit Directus
-  const userResponse = await fetch(`https://fdnd-agency.directus.app/items/milledoni_users/${userId}`);
-  const userData = await userResponse.json();
-
-  // Haal de huidige saved_products op
-  let savedProducts = userData.data.saved_products || [];
-
-  // Voeg het geschenk toe als het nog niet is opgeslagen
-  if (savedProducts.includes(giftId)) {
-    savedProducts.push(giftId);
-  }
-
-  // Update de gebruiker in Directus met de nieuwe saved_products
-  await fetch(`https://fdnd-agency.directus.app/items/milledoni_users/${userId}`, {
+  await fetch('https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=UTF-8',
-    },
     body: JSON.stringify({
-      "data": {
-        "update": [{"saved_products": [giftId] }]}
+        milledoni_products_id: 1269,
+        milledoni_users_id: 6
     }),
-  });
+    headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+    }
+});
 
   // Redirect naar de homepage
   response.redirect(303, '/');
