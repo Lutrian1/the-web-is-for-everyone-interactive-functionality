@@ -90,13 +90,15 @@ body {
             }
         }
         nav {
-            margin-top: -60px;
             display: flex;
-            justify-content: flex-end;
-            align-items: center;
+            position: absolute;
         }
         @media (min-width: 0px) {
-            span.Rest {
+            nav{
+                top: 5px;
+                right: 5px;
+            }
+            .Rest {
                 display: none;
             }
             .list-Button {
@@ -112,12 +114,16 @@ body {
             }
         }
         @media (min-width: 1340px) {
-            span.Rest {
+            nav{
+                top: 25px;
+                right: 25px;
+            }
+            .Rest {
                 display: inline-block;
             }
             .list-Button {
                 width: 170px;
-                height: 32px;
+                height: 40px;
                 #text {
                     display: inline-block;
                 }
