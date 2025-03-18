@@ -76,8 +76,13 @@ body {
             display: flex;
             align-items: center;
             .M{
-                margin-top: -25px;
                 margin-right: 15px;
+                @media (min-width: 0px) {
+                    margin-top: -10px;
+                }
+                @media (min-width: 1340px) {
+                    margin-top: -25px;
+                }
             }
             .illedoni{
                 margin-top: 6px;
@@ -95,8 +100,8 @@ body {
         }
         @media (min-width: 0px) {
             nav{
-                top: 5px;
-                right: 5px;
+                top: 15px;
+                right: 1px;
             }
             .Rest {
                 display: none;
