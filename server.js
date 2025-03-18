@@ -39,40 +39,58 @@ app.get('/gift/:id', async function (request, response) {
 });
 
 // ----------------------------------------------- SAVE GIFT CODE  -----------------------------------------------//
-// Verander deze code naar de nieuwe dingen dat we hebben geleerd. 
-let savedGifts = [];
 
-// POST route om de gift op te slaan
-app.post('/save-gift', express.urlencoded({ extended: true }), async function (request, response) { //express zet het ruwe http format (kan je zien in console van browser) om naar een prettig json object
-    const giftId = request.body.giftId;
-
-    // Fetch gift details van API met giftId
-    const giftResponse = await fetch(`https://fdnd-agency.directus.app/items/milledoni_products/${giftId}`);
-    const giftData = await giftResponse.json();
-
-    // voeg toe aan de 'savedGifts' array
-    savedGifts.push(giftData.data);
-
-    // Redirect naar homepage (Doe dit voor meerdere pages, voor nu alleen index)
-    
-    response.redirect('/');
-});
-
-// Route om de likes te laten zien
-app.get('/mysavedgifts', function (request, response) {
-    response.render('mygiftpage.liquid', { savedGifts: savedGifts });
-});
 // Pseudo code POST-route voor de index-URL
 
-//haalt alle producten op
+  //haalt alle producten op
  
- //check of t product al bestaat
+  //check of t product al bestaat
  
- //als het product bestaat verwijder hem
+  //als het product bestaat verwijder hem
  
- //zo niet voeg hem toe
+  //zo niet voeg hem toe
  
- //redirect naar homepage 
+  //redirect naar homepage 
+
+//Daadwerkelijke code:
+app.post('/save-gift/:giftId', async function (request, response) {
+  const giftId = request.params.giftId; // Haal de giftId uit de URL
+  const userId = 6; // Hardcode mijn userId (id: 6)
+
+  // Haal de gebruiker op uit Directus
+  const userResponse = await fetch(`https://fdnd-agency.directus.app/items/milledoni_users/${userId}`);
+  const userData = await userResponse.json();
+
+  // Haal de huidige saved_products op
+  let savedProducts = userData.data.saved_products || [];
+
+  // Voeg het geschenk toe als het nog niet is opgeslagen
+  if (savedProducts.includes(giftId)) {
+    savedProducts.push(giftId);
+  }
+
+  // Update de gebruiker in Directus met de nieuwe saved_products
+  await fetch(`https://fdnd-agency.directus.app/items/milledoni_users/${userId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+    },
+    body: JSON.stringify({
+      "data": {
+        "update": [{"saved_products": [giftId] }]}
+    }),
+  });
+
+  // Redirect naar de homepage
+  response.redirect(303, '/');
+});
+
+// ----------------------------------------------- ZIEN VAN SAVED GIFTS -----------------------------------------------//
+
+// VERANDER DIT: 
+//app.get('/mysavedgifts', function (request, response) {
+  //response.render('mygiftpage.liquid', { savedGifts: savedGifts });
+//}); 
 
 // ----------------------------------------------- REDIRECT EN 404 -----------------------------------------------//
 
