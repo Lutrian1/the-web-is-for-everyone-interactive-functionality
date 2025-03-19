@@ -3,20 +3,19 @@
 <main>
     <section class="liked-gifts">
         <h2>Your Saved Gifts</h2>
-        {% if savedGifts.length > 0 %}
-            {% for gift in savedGifts %}
+            {% for gift in savedGifts | compact %}
                 <article class="gift-Box">
-                    <a href="/gift/{{ gift.id }}">
-                        <img src="{{ gift.image }}" alt=""></li>
-                        <h3>{{ gift.name }}</h3>
-                        <p>{{ gift.spotter }}</p>
-                        <img src="/images/girl1.png" alt=""><img src="/images/user1.png" alt=""><p>+{{ gift.saved }}<p>Saved</p>
-                        <img src="/images/gifticon.png" alt=""><p>+{{ gift.given }}Given</p>
+                    <a href="/gift/{{ gift.productDetails.id }}">
+                        <img src="{{ gift.productDetails.image }}" alt="">
+                        <h3>{{ gift.productDetails.name }}</h3>
+                        <p>{{ gift.productDetails.spotter }}</p>
+                        <img src="/images/girl1.png" alt=""><img src="/images/user1.png" alt=""><p>+{{ gift.productDetails.saved }}<p>Saved</p>
+                        <img src="/images/gifticon.png" alt=""><p>+{{ gift.productDetails.given }}Given</p>
                     </a>
                 </article>
+            {% else %}
+                <h2>No saved gifts yet</h2>
+                <p>Go to our homepage and search yourself some gifts. If you like them, add them!</p>
             {% endfor %}
-        {% else %}
-            <p>No gifts saved yet.</p>
-        {% endif %}
     </section>
 </main>

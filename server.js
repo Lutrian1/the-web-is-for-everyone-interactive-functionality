@@ -4,6 +4,7 @@ import express from 'express'
 
 import { Liquid } from 'liquidjs';
 
+const userID = 6 // MAAK DEZE OOIT DYNAMISCH
 const app = express()
 
 app.use(express.urlencoded({extended: true})) // Formulierdata parsen
@@ -19,11 +20,26 @@ app.set('views', './views')
 
 app.get('/', async function (request, response) {
 
-  const milledoniProducts = await fetch('https://fdnd-agency.directus.app/items/milledoni_products')
-  const milledoniProductsJSON = await milledoniProducts.json()
+  const milledoniProducts = await fetch('https://fdnd-agency.directus.app/items/milledoni_products'); //Haalt alle producten ooit op
+  const milledoniProductsJSON = await milledoniProducts.json(); // Maak hier een JSON van
+  const all_Products = milledoniProductsJSON // Betere naamgeving, geeft de JSON Variable weer mee aan all Products
+
+  const savedProductsURL = 'https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products';
+  const savedProductsJSON = await fetch(`${savedProductsURL}?filter={"milledoni_users_id":${userID}}`);
+  const saved_products = await savedProductsJSON.json();
+  
+  saved_products.data.forEach(({ milledoni_products_id }) => { // PAS DIT AAN NAAR DE LIQUID EN NIET SERVER SIDE. SERVER SIDE IS RAAR.
+    const product = all_Products.data.find((({ id }) => {
+      return id === milledoni_products_id
+    }));
+
+    if (!product) return;
+    product.saved = true
+  })
+
    // Render index.liquid uit de Views map
    // Geef hier eventueel data aan mee
-   response.render('index.liquid' , {allMilledoniProducts: milledoniProductsJSON.data })
+   response.render('index.liquid' , {allMilledoniProducts: all_Products.data, savedProducts: saved_products });
 })
 
 // ----------------------------------------------- SPECIFIEKE GIFT PAGE  -----------------------------------------------//
@@ -31,7 +47,6 @@ app.get('/', async function (request, response) {
 app.get('/gift/:id', async function (request, response) {
 
   const specificGiftResponse = await fetch(`https://fdnd-agency.directus.app/items/milledoni_products/${request.params.id}`);
-
   const specificGiftResponseJSON = await specificGiftResponse.json();
 
   response.render('specificGift.liquid', { specificGift: specificGiftResponseJSON.data });
@@ -53,29 +68,60 @@ app.get('/gift/:id', async function (request, response) {
   //redirect naar homepage 
 
 //Daadwerkelijke code:
-app.post('/save-gift/:giftId', async function (request, response) {
+app.post('/update-gift/:giftId', async function (request, response) {
 
-  await fetch('https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products', {
-    method: 'POST',
-    body: JSON.stringify({
-        milledoni_products_id: 1269,
-        milledoni_users_id: 6
-    }),
-    headers: {
-        'Content-Type': 'application/json; charset=UTF-8'
-    }
-});
+  const savedProductsURL = 'https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products';
+
+  const idRes = await fetch(`${savedProductsURL}?filter={"milledoni_products_id":${request.params.giftId},"milledoni_users_id":${userID}}`); //Request paramsID
+  const idJson = await idRes.json();
+
+  console.log(idJson)
+  if (idJson.data.length > 0) {
+    const id = idJson.data[0].id;
+   
+    await fetch(`${savedProductsURL}/${id}`, {
+      method: 'DELETE',
+        headers: {
+        'Content-Type': 'application/json;charset=UTF-8'
+        }
+    });
+  } else {
+     await fetch('https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products', {
+        method: 'POST',
+        body: JSON.stringify({
+            milledoni_products_id: request.params.giftId,
+            milledoni_users_id: 6
+        }),
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8'
+        }
+    });
+  }
 
   // Redirect naar de homepage
   response.redirect(303, '/');
 });
 
-// ----------------------------------------------- ZIEN VAN SAVED GIFTS -----------------------------------------------//
+// ----------------------------------------------- ZIEN VAN SAVED GIFTS -----------------------------------------------// (Is met chatGPT gedaan.)
 
-// VERANDER DIT: 
-//app.get('/mysavedgifts', function (request, response) {
-  //response.render('mygiftpage.liquid', { savedGifts: savedGifts });
-//}); 
+app.get('/mysavedgifts', async function (request, response) {
+    // Fetch saved gifts data
+    const savedGiftsResponse = await fetch('https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products?filter=%7B%22milledoni_users_id%22:6%7D');
+    const savedGiftsJSON = await savedGiftsResponse.json();
+
+    // Fetch product details for each saved gift
+    const savedGiftsWithDetails = await Promise.all(savedGiftsJSON.data.map(async (gift) => {
+      const productResponse = await fetch(`https://fdnd-agency.directus.app/items/milledoni_products/${gift.milledoni_products_id}`);
+      const productJSON = await productResponse.json();
+      return {
+        ...gift,
+        productDetails: productJSON.data
+      };
+    }));
+
+    // Render the template with the combined data
+    response.render('mygiftpage.liquid', { savedGifts: savedGiftsWithDetails });
+});
 
 // ----------------------------------------------- REDIRECT EN 404 -----------------------------------------------//
 

@@ -1,6 +1,7 @@
 {% render 'partials/head.liquid', title: 'Homepage', logo: '<a href="/" class="Logo" aria-label="Milledoni"><img src="/images/mainLogo.png" alt="" class="M"><img src="/images/restTextLogo.png" alt="" class="illedoni"></a>' , slogan: 'Finding and sharing gift ideas' %}
 
 <main>
+    
     <section class="chat-Tab">
         <search class="search-Item-Box">
             <form action="">
@@ -20,6 +21,7 @@
             <img src="/images/usersExtra.png" alt="Over +1 Million  Users">
             <p>Unisciti alla nostra community di spotters</p>
         </footer>
+        <a href="/mysavedgifts">View Saved Items</a>
     </section>
     <section class="results-Tab">
         <article class="gift-Box-Create-List">
@@ -33,11 +35,11 @@
             <article class="gift-Box">
                 <a href="/gift/{{ gift.id }}">
                     {% if gift.saved %}
-                        <form method="POST" action="/unsave-gift/{{ gift.id }}">
+                        <form method="POST" action="/update-gift/{{ gift.id }}">
                             <button type="SUBMIT" name="giftId" class="remove-List-Button" aria-label="Remove from list" value="{{ gift.id }}">-</button>
                         </form>
                     {% else %}
-                        <form method="POST" action="/save-gift/{{ gift.id }}">
+                        <form method="POST" action="/update-gift/{{ gift.id }}">
                             <button type="SUBMIT" class="add-List-Button" aria-label="Add to your List">+</button>
                         </form>
                     {% endif %}
@@ -47,13 +49,13 @@
                     <footer class="bottom-Row">
                         <img src="/images/girl1.png" alt="" class="user-Icon1">
                         <img src="/images/user1.png" alt="" class="user-Icon2">
-                        <p>+{{ gift.saved }}Saved</p>
+                        <p>+</p>{{ gifts.saved | default: 35}}<p>Saved</p>
                         <img src="/images/gifticon.png" alt="" class="gift-Icon">
-                        <p>+{{ gift.given }} Given</p>
+                        <p>+{{ gift.given | default: 11 }} Given</p>
                     </footer>
                 </a>
             </article>
         {% endfor %}
     </section>
-    <a href="/mysavedgifts">View Saved Items</a>
+
 </main>
