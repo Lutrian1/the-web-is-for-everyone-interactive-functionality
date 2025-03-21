@@ -34,7 +34,14 @@
         {% for gift in allMilledoniProducts %}
             <article class="gift-Box">
                 <a href="/gift/{{ gift.id }}">
-                    {% if gift.saved %}
+                    {% assign isSaved = false %}
+                    {% for savedProduct in savedProducts %}
+                        {% if savedProduct.milledoni_products_id == gift.id %}
+                            {% assign isSaved = true %}
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if isSaved %}
                         <form method="POST" action="/update-gift/{{ gift.id }}">
                             <button type="SUBMIT" name="giftId" class="remove-List-Button" aria-label="Remove from list" value="{{ gift.id }}">-</button>
                         </form>

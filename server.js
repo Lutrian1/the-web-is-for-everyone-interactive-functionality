@@ -28,14 +28,14 @@ app.get('/', async function (request, response) {
   const savedProductsJSON = await fetch(`${savedProductsURL}?filter={"milledoni_users_id":${userID}}`);
   const {data: saved_products} = await savedProductsJSON.json();
   
-  saved_products.forEach(({ milledoni_products_id }) => { // PAS DIT AAN NAAR DE LIQUID EN NIET SERVER SIDE. SERVER SIDE IS RAAR.
-    const product = all_Products.find((({ id }) => {
-      return id === milledoni_products_id
-    }));
+//  saved_products.forEach(({ milledoni_products_id }) => { // PAS DIT AAN NAAR DE LIQUID EN NIET SERVER SIDE. SERVER SIDE IS RAAR.
+//    const product = all_Products.find((({ id }) => {
+//    return id === milledoni_products_id
+//    }));
 
-    if (!product) return;
-    product.saved = true
-  })
+//    if (!product) return;
+//    product.saved = true
+//  }) (IS DION ZE SHIT)
 
    // Render index.liquid uit de Views map
    // Geef hier eventueel data aan mee
@@ -102,25 +102,49 @@ app.post('/update-gift/:giftId', async function (request, response) {
   response.redirect(303, '/');
 });
 
-// ----------------------------------------------- ZIEN VAN SAVED GIFTS -----------------------------------------------// (Is met chatGPT gedaan.)
+// ----------------------------------------------- ZIEN VAN SAVED GIFTS -----------------------------------------------// 
+
+// Pseudo code POST-route voor de Saved gifts
+
+  // 1. Fetch saved gifts data
+ 
+  // 2. Maak een array om de opgeslagen cadeaus met productdetails op te slaan
+ 
+  // 3. Loop door elk opgeslagen cadeau en haal de productdetails op
+ 
+  // 4. Render de template met de gecombineerde data
+
+//Daadwerkelijke code:
 
 app.get('/mysavedgifts', async function (request, response) {
-    // Fetch saved gifts data
+  try {
     const savedGiftsResponse = await fetch('https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products?filter=%7B%22milledoni_users_id%22:6%7D');
     const {data: savedGiftsJSON} = await savedGiftsResponse.json();
 
-    // Fetch product details for each saved gift
-    const savedGiftsWithDetails = await Promise.all(savedGiftsJSON.map(async (gift) => {
+    const savedGiftsWithDetails = [];
+
+    for (const gift of savedGiftsJSON) {
       const productResponse = await fetch(`https://fdnd-agency.directus.app/items/milledoni_products/${gift.milledoni_products_id}`);
       const {data: productJSON} = await productResponse.json();
-      return {
+      savedGiftsWithDetails.push({
         ...gift,
         productDetails: productJSON
-      };
-    }));
+      });
+    }
 
-    // Render the template with the combined data
+    // De ... kopieert alle eigenschappen van gift, zonder ... werkt dit niet, Voorbeeld zonder spread operator: 
+
+    // savedGiftsWithDetails.push({
+    //  id: gift.id,
+    //  milledoni_products_id: gift.milledoni_products_id,
+    //  productDetails: productJSON.data
+    // });
+
     response.render('mygiftpage.liquid', { savedGifts: savedGiftsWithDetails });
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    response.status(500).send('Internal Server Error');
+  }
 });
 
 // ----------------------------------------------- REDIRECT EN 404 -----------------------------------------------//
