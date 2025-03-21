@@ -22,14 +22,14 @@ app.get('/', async function (request, response) {
 
   const milledoniProducts = await fetch('https://fdnd-agency.directus.app/items/milledoni_products'); //Haalt alle producten ooit op
   const milledoniProductsJSON = await milledoniProducts.json(); // Maak hier een JSON van
-  const all_Products = milledoniProductsJSON // Betere naamgeving, geeft de JSON Variable weer mee aan all Products
+  const {data: all_Products} = milledoniProductsJSON // Betere naamgeving, geeft de JSON Variable weer mee aan all Products
 
   const savedProductsURL = 'https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products';
   const savedProductsJSON = await fetch(`${savedProductsURL}?filter={"milledoni_users_id":${userID}}`);
-  const saved_products = await savedProductsJSON.json();
+  const {data: saved_products} = await savedProductsJSON.json();
   
-  saved_products.data.forEach(({ milledoni_products_id }) => { // PAS DIT AAN NAAR DE LIQUID EN NIET SERVER SIDE. SERVER SIDE IS RAAR.
-    const product = all_Products.data.find((({ id }) => {
+  saved_products.forEach(({ milledoni_products_id }) => { // PAS DIT AAN NAAR DE LIQUID EN NIET SERVER SIDE. SERVER SIDE IS RAAR.
+    const product = all_Products.find((({ id }) => {
       return id === milledoni_products_id
     }));
 
@@ -39,7 +39,7 @@ app.get('/', async function (request, response) {
 
    // Render index.liquid uit de Views map
    // Geef hier eventueel data aan mee
-   response.render('index.liquid' , {allMilledoniProducts: all_Products.data, savedProducts: saved_products });
+   response.render('index.liquid' , {allMilledoniProducts: all_Products, savedProducts: saved_products });
 })
 
 // ----------------------------------------------- SPECIFIEKE GIFT PAGE  -----------------------------------------------//
@@ -47,9 +47,9 @@ app.get('/', async function (request, response) {
 app.get('/gift/:id', async function (request, response) {
 
   const specificGiftResponse = await fetch(`https://fdnd-agency.directus.app/items/milledoni_products/${request.params.id}`);
-  const specificGiftResponseJSON = await specificGiftResponse.json();
+  const {data: specificGift} = await specificGiftResponse.json();
 
-  response.render('specificGift.liquid', { specificGift: specificGiftResponseJSON.data });
+  response.render('specificGift.liquid', { specificGift });
   
 });
 
@@ -107,15 +107,15 @@ app.post('/update-gift/:giftId', async function (request, response) {
 app.get('/mysavedgifts', async function (request, response) {
     // Fetch saved gifts data
     const savedGiftsResponse = await fetch('https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products?filter=%7B%22milledoni_users_id%22:6%7D');
-    const savedGiftsJSON = await savedGiftsResponse.json();
+    const {data: savedGiftsJSON} = await savedGiftsResponse.json();
 
     // Fetch product details for each saved gift
-    const savedGiftsWithDetails = await Promise.all(savedGiftsJSON.data.map(async (gift) => {
+    const savedGiftsWithDetails = await Promise.all(savedGiftsJSON.map(async (gift) => {
       const productResponse = await fetch(`https://fdnd-agency.directus.app/items/milledoni_products/${gift.milledoni_products_id}`);
-      const productJSON = await productResponse.json();
+      const {data: productJSON} = await productResponse.json();
       return {
         ...gift,
-        productDetails: productJSON.data
+        productDetails: productJSON
       };
     }));
 
@@ -144,3 +144,5 @@ app.listen(app.get('port'), function () {
 
   console.log(`Daarna kun je via http://localhost:${app.get('port')}/ jouw interactieve website bekijken.\n\nThe Web is for Everyone. Maak mooie dingen 🙂`)
 })
+
+
