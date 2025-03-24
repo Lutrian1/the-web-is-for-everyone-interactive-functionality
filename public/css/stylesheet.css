@@ -12,6 +12,9 @@ html, body {
     }
 }
 
+        /* top | right | bottom | left */
+        /* margin: 0 0 0 0; */
+
 body {
     /*----------------------------------- ALL VARIABLES --------------------------------------*/
 
@@ -60,13 +63,17 @@ body {
 
     h3 {
         font-size: var(--h3);
-        margin: 0;
+        margin: 0 0 5px 0;
         padding: 0;
     }
 
     p {
         font-size: var(--main-p);
         margin: 0;
+    }
+
+    p.card-Spotter-Text{
+        margin: 0 0 2px 0;
     }
 
     /*----------------------------------- HEADER STYLING, APPLIES TO EVERY PAGE --------------------------------------*/

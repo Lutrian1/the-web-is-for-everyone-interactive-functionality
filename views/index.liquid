@@ -1,7 +1,7 @@
 {% render 'partials/head.liquid', title: 'Homepage', logo: '<a href="/" class="Logo" aria-label="Milledoni"><img src="/images/mainLogo.png" alt="" class="M"><img src="/images/restTextLogo.png" alt="" class="illedoni"></a>' , slogan: 'Finding and sharing gift ideas' %}
 
 <main>
-    
+<!-- De box met de AI die je vragen kan stellen -->
     <section class="chat-Tab">
         <search class="search-Item-Box">
             <form action="">
@@ -23,6 +23,7 @@
         </footer>
         <a href="/mysavedgifts">View Saved Items</a>
     </section>
+    <!-- Core functionaliteit van de site, laat alle resultaten zien de je van de AI zou krijgen (Voor nu statisch) -->
     <section class="results-Tab">
         <article class="gift-Box-Create-List">
             <a href="/profile">
@@ -31,16 +32,16 @@
                 <p>Register or Log in</p>
             </a>
         </article>
-        {% for gift in allMilledoniProducts %}
+        {% for gift in allMilledoniProducts %} <!-- Maakt een gift map aan voor alle producten van milledoni (zie server voor link) -->
             <article class="gift-Box">
                 <a href="/gift/{{ gift.id }}">
+                <!-- Een if en else om te checken als een product gesaved is, zo niet verwijderd hij hem uit de array in de directus -->
                     {% assign Saved = false %}
-                    {% for savedProduct in savedProducts %}
+                    {% for savedProduct in savedProducts %} 
                         {% if savedProduct.milledoni_products_id == gift.id %}
-                            {% assign Saved = true %}
+                            {% assign Saved = true %} 
                         {% endif %}
                     {% endfor %}
-                    
                     {% if Saved %}
                         <form method="POST" action="/update-gift/{{ gift.id }}">
                             <button type="SUBMIT" name="giftId" class="remove-List-Button" aria-label="Remove from list" value="{{ gift.id }}">-</button>
@@ -50,13 +51,14 @@
                             <button type="SUBMIT" class="add-List-Button" aria-label="Add to your List">+</button>
                         </form>
                     {% endif %}
+
                     <img src="{{ gift.image }}" alt="" class="cover-Image">
-                    <h3>{{ gift.name}}</h3>
-                    <p>Spotter: {{ gift.spotter }}</p>
+                    <h3>{{ gift.name | truncate: 40}}</h3> <!-- Truncate laat de max text karaters tot 40, dit zorgt ervoor dat geen kaartjes tekst uit de box hebben -->
+                    <p class="card-Spotter-Text">Spotter: {{ gift.spotter }}</p>
                     <footer class="bottom-Row">
                         <img src="/images/girl1.png" alt="" class="user-Icon1">
                         <img src="/images/user1.png" alt="" class="user-Icon2">
-                        <p>+</p>{{ gifts.saved | default: 35}}<p>Saved</p>
+                        <p>+</p>{{ gifts.saved | default: 35}}<p>Saved</p> <!-- Default zet de standaard van de variablen op een vaste waarde van iets als er niks is -->
                         <img src="/images/gifticon.png" alt="" class="gift-Icon">
                         <p>+{{ gift.given | default: 11 }} Given</p>
                     </footer>

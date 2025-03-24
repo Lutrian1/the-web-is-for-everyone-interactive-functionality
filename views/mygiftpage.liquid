@@ -3,7 +3,7 @@
 <main>
     <section class="liked-gifts">
         <h2>Your Saved Gifts</h2>
-            {% for gift in savedGifts | compact %}
+            {% for gift in savedGifts | compact %} <!-- Compact zorgt ervoor dat het mogelijk is om een null waarde te hebben -->
                 <article class="gift-Box">
                     <a href="/gift/{{ gift.productDetails.id }}">
                         <img src="{{ gift.productDetails.image }}" alt="">
