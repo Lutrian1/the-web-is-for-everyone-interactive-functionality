@@ -32,25 +32,20 @@
                 <p>Register or Log in</p>
             </a>
         </article>
-        {% for gift in allMilledoniProducts %} <!-- Maakt een gift map aan voor alle producten van milledoni (zie server voor link) -->
+        {% for gift in allMilledoniProducts %}
             <article class="gift-Box">
                 <a href="/gift/{{ gift.id }}">
-                <!-- Een if en else om te checken als een product gesaved is, zo niet verwijderd hij hem uit de array in de directus -->
-                    {% assign Saved = false %}
-                    {% for savedProduct in savedProducts %} 
-                        {% if savedProduct.milledoni_products_id == gift.id %}
-                            {% assign Saved = true %} 
-                        {% endif %}
-                    {% endfor %}
-                    {% if Saved %}
-                        <form method="POST" action="/update-gift/{{ gift.id }}">
-                            <button type="SUBMIT" name="giftId" class="remove-List-Button" aria-label="Remove from list" value="{{ gift.id }}">-</button>
-                        </form>
-                    {% else %}
-                        <form method="POST" action="/update-gift/{{ gift.id }}">
-                            <button type="SUBMIT" class="add-List-Button" aria-label="Add to your List">+</button>
-                        </form>
-                    {% endif %}
+                <!-- Check if the current gift.id exists in the savedProducts array -->
+                {% assign savedProductIds = savedProducts | map: 'milledoni_products_id' %}
+                {% if savedProductIds contains gift.id %}
+                    <form method="POST" action="/update-gift/{{ gift.id }}">
+                        <button type="SUBMIT" name="giftId" class="remove-List-Button" aria-label="Remove from list" value="{{ gift.id }}">-</button>
+                    </form>
+                {% else %}
+                    <form method="POST" action="/update-gift/{{ gift.id }}">
+                        <button type="SUBMIT" class="add-List-Button" aria-label="Add to your List">+</button>
+                    </form>
+                {% endif %}
 
                     <img src="{{ gift.image }}" alt="" class="cover-Image">
                     <h3>{{ gift.name | truncate: 40}}</h3> <!-- Truncate laat de max text karaters tot 40, dit zorgt ervoor dat geen kaartjes tekst uit de box hebben -->
