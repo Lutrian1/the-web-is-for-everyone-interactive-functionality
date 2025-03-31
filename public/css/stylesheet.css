@@ -198,6 +198,11 @@ body {
 }
 
 /* -------------------------------- ANIMATIE----------------------------------- */
+.add-remove-List-Button:hover{
+    scale: 1.1;
+    transition: ease-in-out;
+}
+
 .load-State {
     border-radius: 50%;
     background-color: rgba(0, 255, 255, 0);
@@ -216,6 +221,7 @@ body {
     100% {
       rotate: 360deg;
     }
-  }
+}
+
 
   

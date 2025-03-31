@@ -10,10 +10,6 @@
     <img src="{{ specificGift.image }}" alt="">
     <section class="Right-Section">
         <h2>{{ specificGift.name  }}</h2>
-        <form action="/save-gift" method="POST">
-            <input type="hidden" name="giftId" value="{{ gift.id }}">
-            <button type="submit" class="add-List-Button">+</button>
-        </form>
         <dl class="show-Users">
             <img src="/images/girl1.png" alt=""><img src="/images/user1.png" alt=""><p>+{{ gift.saved }} Saved</p>
             <img src="/images/gifticon.png" alt=""><p>+{{ gift.given }} Given</p>
