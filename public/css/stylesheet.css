@@ -150,7 +150,7 @@ body {
 /*----------------------------------- Buttons --------------------------------------*/
 
 /* General Button Styling */
-.add-List-Button {
+.add-remove-List-Button {
     font-family: var(--main-font);
     font-weight: var(--semi-bold);
     margin: 5px;
@@ -196,3 +196,26 @@ body {
         height: 30px;
     }
 }
+
+/* -------------------------------- ANIMATIE----------------------------------- */
+.load-State {
+    border-radius: 50%;
+    background-color: rgba(0, 255, 255, 0);
+    width: 25px;
+    height: 25px;
+    border: 5px solid rgba(0, 0, 0, 0.325);
+    border-top: 5px solid rgb(0, 0, 0);
+    opacity: 0.6;
+    animation: rotate 2s infinite;
+    span{
+        display: none;
+    }
+}
+
+@keyframes rotate {
+    100% {
+      rotate: 360deg;
+    }
+  }
+
+  

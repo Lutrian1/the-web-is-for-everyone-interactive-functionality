@@ -18,7 +18,7 @@
             <img src="/images/user1.png" alt="" class="user1" >
             <img src="/images/user2.png" alt="" class="user2">
             <img src="/images/user3.png" alt="" class="user3">
-            <img src="/images/usersExtra.png" alt="Over +1 Million  Users">
+            <img src="/images/usersExtra.png" alt="Over +1 Million  Users" class="user-Extra">
             <p>Unisciti alla nostra community di spotters</p>
         </footer>
         <a href="/mysavedgifts">View Saved Items</a>
@@ -35,15 +35,15 @@
         {% for gift in allMilledoniProducts %}
             <article class="gift-Box">
                 <a href="/gift/{{ gift.id }}">
-                <!-- Check if the current gift.id exists in the savedProducts array -->
-                {% assign savedProductIds = savedProducts | map: 'milledoni_products_id' %}
-                {% if savedProductIds contains gift.id %}
-                    <form method="POST" action="/update-gift/{{ gift.id }}">
-                        <button type="SUBMIT" name="giftId" class="remove-List-Button" aria-label="Remove from list" value="{{ gift.id }}">-</button>
+                <!-- Check of de gift.id bestaat in de savedProducts array -->
+                {% assign savedProductIds = savedProducts | map: 'milledoni_products_id' %} <!-- Voegt array toe aan de map milledoni_productis_id !-->
+                {% if savedProductIds contains gift.id %} <!-- Als een array (dus savedProductIds) een bepaald ID Contained voer dan dit uit: !-->
+                    <form method="POST" action="/update-gift/{{ gift.id }}" data-enhanced="form-{{ gift.id }}">
+                        <button type="SUBMIT" name="giftId" class="add-remove-List-Button" aria-label="Remove from list" value="{{ gift.id }}"><span>-</span></button>
                     </form>
                 {% else %}
-                    <form method="POST" action="/update-gift/{{ gift.id }}">
-                        <button type="SUBMIT" class="add-List-Button" aria-label="Add to your List">+</button>
+                    <form method="POST" action="/update-gift/{{ gift.id }}" data-enhanced="form-{{ gift.id }}">
+                        <button type="SUBMIT" class="add-remove-List-Button" aria-label="Add to your List"><span>+</span></button>
                     </form>
                 {% endif %}
 
@@ -53,9 +53,9 @@
                     <footer class="bottom-Row">
                         <img src="/images/girl1.png" alt="" class="user-Icon1">
                         <img src="/images/user1.png" alt="" class="user-Icon2">
-                        <p>+</p>{{ gifts.saved | default: 35}}<p>Saved</p> <!-- Default zet de standaard van de variablen op een vaste waarde van iets als er niks is -->
+                        <p>+<span>{{ gifts.saved | default: 35}}</span>Saved </p> <!-- Default zet de standaard van de variablen op een vaste waarde van iets als er niks is -->
                         <img src="/images/gifticon.png" alt="" class="gift-Icon">
-                        <p>+{{ gift.given | default: 11 }} Given</p>
+                        <p>+<span>{{ gift.given | default: 11 }}</span>Given</p>
                     </footer>
                 </a>
             </article>
