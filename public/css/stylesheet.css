@@ -3,6 +3,7 @@ html, body {
     padding: 0;
     font-family: var(--main-font);
     background-color: var(--main-background-color);
+    
     li {
         list-style: none;
     }
@@ -12,40 +13,44 @@ html, body {
     }
 }
 
-        /* top | right | bottom | left */
+        /* boven | rechts | onder | links */
         /* margin: 0 0 0 0; */
 
 body {
-    /*----------------------------------- ALL VARIABLES --------------------------------------*/
+    /*----------------------------------- ALLE VARIABELEN --------------------------------------*/
 
-    /* Fonts */
+    /* Lettertypen */
     --main-font: 'Parkinsans', sans-serif;
 
-    /* Font sizes for headings */
+    /* Lettergroottes voor koppen */
     --h1: 60px;
     --h2: 40px;
     --h3: 24px;
+    --h4: 30px;
+
     --main-p: 16.6px;
     --big-text: 20px;
     --big-important-text: 24px;
 
-    /* Font weights */
+    /* Font weight */
     --regular: 400;
     --medium: 500;
     --semi-bold: 600;
     --bold: 800;
 
-    /* Colors */
+    /* Kleuren */
     --primary-color: #FEFCFA;
     --main-text-color: #000000;
     --alt-text-color: #FFFFFF;
     --main-background-color: #F6F5F5;
     --results-tab-background-color: #EDEDED;
+    --create-list-card: #868686;
 
-    /* Buttons */
+    /* Knoppen */
     --button-background-color: #FFFFFF;
+    --second-button-background-color: #212121;
 
-    /*----------------------------------- VARIABLES FOR ALL HEADINGS AND OTHER ITEMS --------------------------------------*/
+    /*----------------------------------- VARIABELEN VOOR ALLE KNOPPEN EN ANDERE ELEMENTEN --------------------------------------*/
 
     h1 {
         font-size: var(--h1);
@@ -75,81 +80,81 @@ body {
     p.card-Spotter-Text{
         margin: 0 0 2px 0;
     }
+}
 
-    /*----------------------------------- HEADER STYLING, APPLIES TO EVERY PAGE --------------------------------------*/
-
-    header {
-        .Logo{
-            display: flex;
-            align-items: center;
-            .M{
-                margin-right: 15px;
-                @media (min-width: 0px) {
-                    margin-top: -10px;
-                }
-                @media (min-width: 1340px) {
-                    margin-top: -25px;
-                }
+/*----------------------------------- HEADER STYLE, GELDIG VOOR ELKE PAGINA --------------------------------------*/
+header {
+    .Logo{
+        display: flex;
+        align-items: center;
+        .M{
+            margin-right: 15px;
+            @media (min-width: 0px) {
+                margin-top: -10px;
             }
-            .illedoni{
-                margin-top: 6px;
-                @media (min-width: 0px) {
-                    display: none;
-                }
-                @media (min-width: 1340px) {
-                    display: block;
-                }
+            @media (min-width: 1340px) {
+                margin-top: -25px;
             }
         }
-        nav {
-            display: flex;
-            position: absolute;
-        }
-        @media (min-width: 0px) {
-            nav{
-                top: 15px;
-                right: 1px;
-            }
-            .Rest {
+        .illedoni{
+            margin-top: 6px;
+            @media (min-width: 0px) {
                 display: none;
             }
-            .list-Button {
-                position: sticky;
-                width: 40px;
-                height: 40px;
-                #text {
-                    display: none;
-                }
-                .save-Icon{
-                     margin: 0;
-                }
+            @media (min-width: 1340px) {
+                display: block;
             }
         }
-        @media (min-width: 1340px) {
-            nav{
-                top: 25px;
-                right: 25px;
+    }
+    nav {
+        display: flex;
+        position: fixed; 
+        z-index: 1000; 
+    }
+    @media (min-width: 0px) {
+        nav{
+            top: 15px;
+            right: 10px; 
+        }
+        .Rest {
+            display: none;
+        }
+        .list-Button {
+            position: sticky;
+            width: 40px;
+            height: 40px;
+            #text {
+                display: none;
             }
-            .Rest {
+            .save-Icon{
+                 margin: 0;
+            }
+        }
+    }
+    @media (min-width: 1340px) {
+        nav{
+            top: 25px;
+            right: 25px;
+        }
+        .Rest {
+            display: inline-block;
+        }
+        .list-Button {
+            width: 170px;
+            height: 40px;
+            #text {
                 display: inline-block;
             }
-            .list-Button {
-                width: 170px;
-                height: 40px;
-                #text {
-                    display: inline-block;
-                }
-                .save-Icon{
-                    margin-left: 5px;
-                }
+            .save-Icon{
+                margin-left: 5px;
             }
         }
     }
 }
 
-/*----------------------------------- Buttons --------------------------------------*/
+/*----------------------------------- BUTTON --------------------------------------*/
 
-/* General Button Styling */
+/* Algemene buttonstijl */
 .add-remove-List-Button {
     font-family: var(--main-font);
     font-weight: var(--semi-bold);
@@ -167,7 +172,7 @@ body {
     border-radius: 50px;
 }
 
-/* Other Button Styling */
+/* Andere buttonstijlen */
 
 .list-Button {
     display: flex;
@@ -197,7 +202,43 @@ body {
     }
 }
 
-/* -------------------------------- ANIMATIE----------------------------------- */
+.search-Bar{
+    width: 100%;
+    max-width: 400px;
+    align-items: center;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    border: solid #000000;
+    height: 60px;
+    border-radius: 50px;
+    /* boven | rechts | onder | links */
+    background-color: var(--primary-color);
+    box-sizing: border-box;
+    
+    .search-Text{
+        border: none;
+        width: calc(100% - 100px); /* Ruimte voor knoppen */
+    }
+    .mic-Icon{
+        width: 18px;
+        height: 22px;
+    }
+    
+    .search-Button{
+        border-radius: 100%;
+        width: 45px;
+        height: 45px;
+        border: none;
+        background-color: #000000;
+        .magnifying-Glass{
+            margin: 5px;
+            left: 5px;
+        }
+    }
+}
+
+/* -------------------------------- ANIMATIE ----------------------------------- */
 .add-remove-List-Button:hover{
     scale: 1.1;
     transition: ease-in-out;
@@ -223,5 +264,3 @@ body {
     }
 }
 
-
-  

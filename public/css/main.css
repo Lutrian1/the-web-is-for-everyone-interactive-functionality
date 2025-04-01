@@ -1,8 +1,8 @@
-/* -------------------------------- MAIN STYLING ----------------------------------- */
+/* -------------------------------- MAIN ----------------------------------- */
 
 main {
     @media (min-width: 0px) {
-        /* Styles for smaller screens */
+        
     }
 
     @media (min-width: 1340px) {
@@ -15,25 +15,43 @@ main {
 
     section.chat-Tab {
         @media (min-width: 0px) {
-            /* Styles for smaller screens */
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--main-background-color);
+            padding: 10px;
+            z-index: 1000;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
         }
 
         @media (min-width: 1340px) {
             display: flex;
             justify-content: flex-end;
             flex-direction: column;
-            height: calc(90vh - 150px - 15px); /* 150px = Header height, 15px = padding */
+            height: calc(90vh - 150px - 15px); /* 150px = Hoogte header, 15px = padding */
             position: sticky;
             top: 0;
             z-index: 1;
             overflow-y: auto;
             margin: 20px;
+            background-color: transparent;
+            padding: 0;
+            box-shadow: none;
+        }
+        .search-Item-Box{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .show-Active-Users {
-            margin: 0;
+             /* boven | rechts | onder | links */
+            margin: 40px 0px 0px 0px;
             padding: 0;
-            display: flex;
+            position: relative;
 
             img {
                 width: 60px;
@@ -51,17 +69,55 @@ main {
             }
 
             .user-Extra {
-                left: -100px;
-                position: relative;
+                left: 80px;
+                position: absolute;
+            }
+            p{
+                display: flex;
+                align-items: center;
+            }
+
+            @media (min-width: 0px) {
+                display: none;
+            }
+            @media (min-width: 1340px) {
+                display: flex;
             }
         }
     }
 
+    /* -------------------------------- RESULTS TAB ----------------------------------- */
     section.results-Tab {
-        padding: 15px;
+        /* boven | rechts | onder | links */
+        padding: 6px 15px 15px 15px;
         gap: 2px;
         background-color: var(--results-tab-background-color);
-        border-radius: 30px;
+        border-radius: 20px;
+        margin-bottom: 80px; /* Ruimte voor vaste chat-tab op mobiel */
+
+        @media (min-width: 1340px) {
+            margin-bottom: 0; /* Reset margin op desktop */
+        }
+
+        @media (min-width: 0px) {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 520px) {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 744px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (min-width: 1084px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
 
         @media (min-width: 1340px) {
             display: grid;
@@ -69,17 +125,21 @@ main {
         }
 
         .gift-Box {
+            position: relative;
             background-color: var(--primary-color);
             width: 310px;
             height: 467px;
             margin-top: 10px;
             box-shadow: 5px 3px 10px rgb(0 0 0 / 0.2);
             padding: 10px;
+            
             form {
+                /* Absoluut voor betere toegankelijkheid */
                 position: absolute;
+                top: 5px;
+                left: 5px;
             }
 
-            /* Style for the cover image */
             img.cover-Image {
                 width: fit-content;
                 height: 295px;
@@ -88,26 +148,22 @@ main {
                 margin: 0 auto;
             }
 
-            /* Style for the bottom row */
             .bottom-Row {
                 display: flex;
                 align-items: center;
                 justify-content: space-around;
                 margin-left: -10px;
 
-                /* Style for user icons */
                 img.user-Icon1,
                 img.user-Icon2 {
                     width: 38px;
                     height: 38px;
                 }
 
-                /* Style for the second user icon */
                 img.user-Icon2 {
                     margin-left: -30px;
                 }
 
-                /* Style for the gift icon */
                 img.gift-Icon {
                     width: 30px;
                     height: 30px;
@@ -121,5 +177,73 @@ main {
                 }
             }
         }
+    }
+}
+
+/* -------------------------------- CREATE LIST KAART ----------------------------------- */
+.create-List-Card{
+    border-radius: 15px;
+    background-color: var(--create-list-card);
+    width: 310px;
+    height: 467px;
+    margin-top: 10px;
+    box-shadow: 5px 3px 10px rgb(0 0 0 / 0.2);
+    padding: 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    
+    p:first-of-type{
+        font-size: var(--h4);
+        font-weight: var(--semi-bold);
+        color: var(--primary-color);
+        text-align: center;
+    }
+    
+    p:nth-of-type(2){
+        position: absolute;
+        bottom: 5%;
+        font-size: var(--big-important-text);
+        color: var(--primary-color);
+        background-color: var(--second-button-background-color);
+        padding: 10px;
+        border-radius: 40px;
+    }
+    
+    img{
+        position: absolute;
+    }
+    
+    .flower{
+        bottom: 20%;
+        left: 10%;
+    }
+    
+    .woman{
+        bottom: 35%;
+        left: 35%;
+    }
+}
+
+/* -------------------------------- TIJDELIJKE LINK STYLING ----------------------------------- */
+a.VERWIJDERLATER {
+    position: fixed;
+    right: 20px;
+    z-index: 1001; 
+    background-color: var(--second-button-background-color);
+    color: var(--primary-color);
+    padding: 10px 15px;
+    border-radius: 30px;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    
+    @media (min-width: 0px) {
+        top: 80px; 
+        bottom: auto;
+    }
+    
+    @media (min-width: 1340px) {
+        top: auto;
+        bottom: 20px;
     }
 }
