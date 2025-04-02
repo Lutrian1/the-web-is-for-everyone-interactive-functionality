@@ -37,7 +37,7 @@ In [Server-Side-Rendering](https://github.com/Lutrian1/server-side-rendering-ser
 
 ### Liquid 
 
-#### For Loop 
+#### For Loop / Werken met POST
 
 In de for-loop wordt voor elke data uit Directus een artikel gemaakt met daarin specifieke dingen uit Directus. Dingen zoals de cadeaunaam of afbeelding kun je dan met een servercode meegeven in de for-loop.
 
