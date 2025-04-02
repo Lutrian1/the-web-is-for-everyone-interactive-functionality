@@ -21,19 +21,23 @@ Ik koos ervoor om de resultaten die je naar de chatbot stuurt rechts te tonen, z
 
 Ik heb voornamelijk gewerkt aan de styling van de homepage en een save-knop die ik in 'Kenmerken' laat zien. Mijn homepage ziet er nu zo uit:
 
+https://the-web-is-for-everyone-interactive-krhs.onrender.com
+
+## Gebruik
+
 #### Save-Button
 
-Momenteel is het belangrijkste in mijn site de 'save-button'. Deze knop kan cadeaus opslaan en deze tonen op de 'jouw cadeaus'-pagina. Dit is hoe het werkt:
+Momenteel is het belangrijkste in mijn site de 'save-button'. Deze knop kan cadeaus opslaan en deze tonen op de 'jouw cadeaus'pagina. Dit is hoe het werkt:
 
 https://github.com/user-attachments/assets/e12574eb-44e8-441e-8fc8-81cf8387dc58
 
 In [Server-Side-Rendering](https://github.com/Lutrian1/server-side-rendering-server-side-website?tab=readme-ov-file#save-button) was dit enkel nog lokaal werkend en kon dit niet worden opgeslagen in de database. In deze sprint heb ik ervoor gezorgd dat deze werkt in de database in 'Kenmerken' Laat ik zien hoe ik dit heb gedaan. Daarnaast is hieraan ook een 'Loading-State' aan toegevoegd, ook hier vertel ik meer over in 'Kenmerken'
 
+## Kenmerken
+
 #### Light House Test
 
 <img width="1061" alt="image" src="https://github.com/user-attachments/assets/fbcceccf-42b2-4572-a85f-b6aed45ddb64" />
-
-## Kenmerken
 
 ### Liquid 
 
@@ -109,7 +113,7 @@ https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/bl
 
 Om ervoor te zorgen dat hij de volledige details (dus alle data) van een specifieke gift meeneemt (dus bijvoorbeeld de image), maak ik een lege array waaraan ik die data meegeef.
 
-in mijn HTML heb ik een if, else statement. Dat ervoor zorgt dat als er niks gesaved is, hij toned dat het mogelijk is om iets te saven. Een EMPTY-STATE dus:
+in mijn HTML heb ik een if, else statement. Dat ervoor zorgt dat als er niks gesaved is, hij toont dat het mogelijk is om iets te saven. Een EMPTY-STATE dus:
 
 https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/5410563775e355846abaefd9c2aa7caef2dd4261/views/mygiftpage.liquid#L3-L21
 
@@ -133,8 +137,7 @@ Als je een niet-bestaande route invoert, toont hij een 404-pagina. Ik render een
 
 In Express 4 kon je gebruik maken van het '*'. Dit betekent eigenlijk alles. Dus alles wat verkeerd wordt ingevoerd na een route (bijvoorbeeld: /oigwogee), wordt getoond als 404. In Express 5 wordt gebruik gemaakt van de *splat. Ik weet niet wat dit inhoudt, maar dit is nodig om dezelfde werking te behouden. Zie documentatie van Express.js: https://expressjs.com/en/guide/migrating-5.html#path-syntax
 
-
-
+## Installatie
 
 
 
