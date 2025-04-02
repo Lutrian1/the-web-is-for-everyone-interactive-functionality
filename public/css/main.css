@@ -1,6 +1,6 @@
-/* -------------------------------- MAIN ----------------------------------- */
+/* -------------------------------- MAIN (Voor Homepage)----------------------------------- */
 
-main {
+main.homepage {
     @media (min-width: 0px) {
         
     }
@@ -169,15 +169,30 @@ main {
                     height: 30px;
                     margin-right: 5px;
                 }
-
-                p{
-                    span{
-                        margin-right: 5px;
-                    }
-                }
             }
         }
     }
+}
+
+p{
+    span{
+        margin-right: 5px;
+    }
+}
+
+
+/* -------------------------------- MAIN voor de giftpage ----------------------------------- */
+
+main.giftpage{
+    @media (min-width: 0px) {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    @media (min-width: 880px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
 }
 
 /* -------------------------------- CREATE LIST KAART ----------------------------------- */
