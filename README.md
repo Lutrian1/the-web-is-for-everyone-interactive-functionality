@@ -36,23 +36,21 @@ In [Server-Side-Rendering](https://github.com/Lutrian1/server-side-rendering-ser
 
 ## Kenmerken
 
-### Liquid Templates
+### Liquid 
 
 #### For Loop
 
-https://github.com/Lutrian1/server-side-rendering-server-side-website/blob/3610cfdfb0eb07aa231b6cdf48787bc3221ecf56/views/index.liquid#L47-L72
-
 In de for-loop wordt voor elke data uit Directus een artikel gemaakt met daarin specifieke dingen uit Directus. Dingen zoals de cadeaunaam of afbeelding kun je dan met een servercode meegeven in de for-loop.
+
+[https://github.com/Lutrian1/server-side-rendering-server-side-website/blob/3610cfdfb0eb07aa231b6cdf48787bc3221ecf56/views/index.liquid#L47-L72](https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/df2e325248feabbacc68895dc132bfd5b71c9f6c/views/index.liquid#L34-L60)
+
+De {{ gift.Image }} in de img src="" toont dus de afbeelding van Directus voor dat item. Hierdoor is elke data dynamisch.
 
 <img width="1217" alt="image" src="https://github.com/user-attachments/assets/aa24dbc7-403c-4114-89a2-4a90344cf7af" />
 
-https://github.com/Lutrian1/server-side-rendering-server-side-website/blob/3610cfdfb0eb07aa231b6cdf48787bc3221ecf56/server.js#L40-L49
+Hierin bevind zich ook een 'if' statement. Deze lijnen code zorgen ervoor dat de bookmark kan veranderen van een '+' naar een '-', als een cadeau al is gesaved zal hij tonen als een '-', in mijn server code zorg ik ervoor dat stel hij is een '-', dat hij dan ipv een POST, een DELETE plaatst in de database om het bijbehorende item te verwijderen:
 
-In regel 59 heb ik bijvoorbeeld een servercode met de code:
-
-https://github.com/Lutrian1/server-side-rendering-server-side-website/blob/3610cfdfb0eb07aa231b6cdf48787bc3221ecf56/views/index.liquid#L59
-
-De {{ gift.Image }} in de img src="" toont dus de afbeelding van Directus voor dat item. Hierdoor is elke data dynamisch.
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/df2e325248feabbacc68895dc132bfd5b71c9f6c/server.js#L71-L104
 
 ### Specifieke gift page
 
