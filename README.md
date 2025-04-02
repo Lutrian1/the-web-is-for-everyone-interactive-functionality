@@ -21,7 +21,6 @@ Ik koos ervoor om de resultaten die je naar de chatbot stuurt rechts te tonen, z
 
 Ik heb voornamelijk gewerkt aan de styling van de homepage en een save-knop die ik in 'Kenmerken' laat zien. Mijn homepage ziet er nu zo uit:
 
-
 #### Save-Button
 
 Momenteel is het belangrijkste in mijn site de 'save-button'. Deze knop kan cadeaus opslaan en deze tonen op de 'jouw cadeaus'-pagina. Dit is hoe het werkt:
