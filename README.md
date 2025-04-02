@@ -91,7 +91,13 @@ doormiddel van de 'data-enhanced' code in HTML zorg je ervoor, dat stel je brows
 
 https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/8ee4b77412c593eb8cfd20f5067780baebc42bef/views/index.liquid#L51
 
-Met deze 2 lines zorg ervoor dat ik mijn save button selecteer, en hieraan een animatie toevoeg die ik in css maak:
+Met deze 2 lines zorg ervoor dat ik mijn save button selecteer, en hieraan een animatie toevoeg die ik in css maak.
+
+Javascript lines:
+
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/a27470ab939723079163308399e3f16a4c36bfc8/public/scripts/script.js#L27-L29
+
+animatie in css:
 
 https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/8ee4b77412c593eb8cfd20f5067780baebc42bef/public/css/stylesheet.css#L247-L265
 
