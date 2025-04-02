@@ -21,23 +21,27 @@ Ik koos ervoor om de resultaten die je naar de chatbot stuurt rechts te tonen, z
 
 Ik heb voornamelijk gewerkt aan de styling van de homepage en een save-knop die ik in 'Kenmerken' laat zien. Mijn homepage ziet er nu zo uit:
 
+https://the-web-is-for-everyone-interactive-krhs.onrender.com
+
+## Gebruik
+
 #### Save-Button
 
-Momenteel is het belangrijkste in mijn site de 'save-button'. Deze knop kan cadeaus opslaan en deze tonen op de 'jouw cadeaus'-pagina. Dit is hoe het werkt:
+Momenteel is het belangrijkste in mijn site de 'save-button'. Deze knop kan cadeaus opslaan en deze tonen op de 'jouw cadeaus'pagina. Dit is hoe het werkt:
 
 https://github.com/user-attachments/assets/e12574eb-44e8-441e-8fc8-81cf8387dc58
 
 In [Server-Side-Rendering](https://github.com/Lutrian1/server-side-rendering-server-side-website?tab=readme-ov-file#save-button) was dit enkel nog lokaal werkend en kon dit niet worden opgeslagen in de database. In deze sprint heb ik ervoor gezorgd dat deze werkt in de database in 'Kenmerken' Laat ik zien hoe ik dit heb gedaan. Daarnaast is hieraan ook een 'Loading-State' aan toegevoegd, ook hier vertel ik meer over in 'Kenmerken'
 
+## Kenmerken
+
 #### Light House Test
 
 <img width="1061" alt="image" src="https://github.com/user-attachments/assets/fbcceccf-42b2-4572-a85f-b6aed45ddb64" />
 
-## Kenmerken
-
 ### Liquid 
 
-#### For Loop 
+#### For Loop / Werken met POST
 
 In de for-loop wordt voor elke data uit Directus een artikel gemaakt met daarin specifieke dingen uit Directus. Dingen zoals de cadeaunaam of afbeelding kun je dan met een servercode meegeven in de for-loop.
 
@@ -50,6 +54,10 @@ De {{ gift.Image }} in de img src="" toont dus de afbeelding van Directus voor d
 Hierin bevind zich ook een 'if' statement. Deze lijnen code zorgen ervoor dat de bookmark kan veranderen van een '+' naar een '-', als een cadeau al is gesaved zal hij tonen als een '-', in mijn server code zorg ik ervoor dat stel hij is een '-', dat hij dan ipv een POST, een DELETE plaatst in de database om het bijbehorende item te verwijderen:
 
 https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/df2e325248feabbacc68895dc132bfd5b71c9f6c/server.js#L71-L104
+
+om deze code een beetje uit te leggen kan je hier mijn pseudo code lezen:
+
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/33efcc8d39dd404ed4f0b6f9c5c8b69ad972b71d/server.js#L58-L68
 
 ### Specifieke gift page
 
@@ -73,27 +81,59 @@ https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/bl
 
 Ik gebruik die userID weer hier:
 
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/8ee4b77412c593eb8cfd20f5067780baebc42bef/server.js#L75
 
+en hier:
 
-https://github.com/Lutrian1/server-side-rendering-server-side-website/blob/26703c537048c3e73c18ae93ff8a6eb11479e43e/server.js#L61-L82
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/8ee4b77412c593eb8cfd20f5067780baebc42bef/server.js#L93
 
-In regel 61 maak ik een lege array die wordt gevuld met data uit de save-knop. Deze array wordt meegegeven met een app.get naar de /mysavedgift (mygiftpage.liquid) in regel 61 tot 82.
+dit zorgt ervoor dat hij hem post op mijn UserID
 
-Om het specifieke cadeau toe te voegen, gebruik ik de GiftId variabele. De specifieke cadeaus worden uiteindelijk gepushed naar de saveGifts, en daarna geredirect naar de homepage.
+##### Loading State
+
+In deze sprint was het belangrijk om ook een loading state hierin te koppelen. In mijn javascript zorg ik ervoor dat stel het apparaat staat javascript toe (voor progressive enhacement), dat hij ervoor zorgt dat de default loading state van een browser (dus stel je zou een browser refreshen), weg word gehaald, en ik een custom loading state maak aan de button.
+
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/8ee4b77412c593eb8cfd20f5067780baebc42bef/public/scripts/script.js#L1-L60
+
+doormiddel van de 'data-enhanced' code in HTML zorg je ervoor, dat stel je browser/apparaat support 'data-enhanced' dat je de bovenstaande javascript invoert:
+
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/8ee4b77412c593eb8cfd20f5067780baebc42bef/views/index.liquid#L51
+
+Met deze 2 lines zorg ervoor dat ik mijn save button selecteer, en hieraan een animatie toevoeg die ik in css maak.
+
+Javascript lines:
+
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/a27470ab939723079163308399e3f16a4c36bfc8/public/scripts/script.js#L27-L29
+
+animatie in css:
+
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/8ee4b77412c593eb8cfd20f5067780baebc42bef/public/css/stylesheet.css#L247-L265
+
+### Saved gifts page
+
+In de saved gift page toon ik de opgeslagen gifts voor een specifieke user.
+
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/5410563775e355846abaefd9c2aa7caef2dd4261/server.js#L119-L148
+
+Om ervoor te zorgen dat hij de volledige details (dus alle data) van een specifieke gift meeneemt (dus bijvoorbeeld de image), maak ik een lege array waaraan ik die data meegeef.
+
+in mijn HTML heb ik een if, else statement. Dat ervoor zorgt dat als er niks gesaved is, hij toont dat het mogelijk is om iets te saven. Een EMPTY-STATE dus:
+
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/5410563775e355846abaefd9c2aa7caef2dd4261/views/mygiftpage.liquid#L3-L21
 
 ### Reroute en 404.
 
-https://github.com/user-attachments/assets/553cfdf9-83e4-4daf-89b8-136db5a0a9a8
+https://github.com/user-attachments/assets/d7646737-f598-43a7-83b2-1220e5c89410
 
 #### Reroute: 
 
-https://github.com/Lutrian1/server-side-rendering-server-side-website/blob/3610cfdfb0eb07aa231b6cdf48787bc3221ecf56/server.js#L86-L88
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/5410563775e355846abaefd9c2aa7caef2dd4261/server.js#L154-L156
 
 Hierin word je teruggestuurd naar de lege pagina als je een verkeerde cadeau-ID invoert.
 
 #### 404:
 
-https://github.com/Lutrian1/server-side-rendering-server-side-website/blob/3610cfdfb0eb07aa231b6cdf48787bc3221ecf56/server.js#L91-L93
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/5410563775e355846abaefd9c2aa7caef2dd4261/server.js#L159-L161
 
 Als je een niet-bestaande route invoert, toont hij een 404-pagina. Ik render een 404-pagina met specifieke styling. Het belangrijkste is de response.status(404), zodat de browser weet dat dit een 404 is.
 
@@ -101,12 +141,39 @@ Als je een niet-bestaande route invoert, toont hij een 404-pagina. Ik render een
 
 In Express 4 kon je gebruik maken van het '*'. Dit betekent eigenlijk alles. Dus alles wat verkeerd wordt ingevoerd na een route (bijvoorbeeld: /oigwogee), wordt getoond als 404. In Express 5 wordt gebruik gemaakt van de *splat. Ik weet niet wat dit inhoudt, maar dit is nodig om dezelfde werking te behouden. Zie documentatie van Express.js: https://expressjs.com/en/guide/migrating-5.html#path-syntax
 
-### Vragen
+## Installatie
 
-Veel staat in het Engels, maar de namen en dynamische data zijn allemaal in het Nederlands. Kan dit worden aangepast?
+1. Fork deze Repo
+   - Je kan een Repo forken door rechtsboven op de fork te klikken en (create fork) te drukken:
+     <img width="1231" alt="image" src="https://github.com/user-attachments/assets/e0036e3b-0602-4d3c-ad11-ed496934ef8e" />
+   - Zorg ervoor dat je ook even github desktop download: https://desktop.github.com/download/
+   - Dit zorgt ervoor dat je de code kan kopiëren op jouw computer
+   - Dit doe je door op de grootte groene knop 'code' te drukken (in jouw geforkte repo) en dan op 'open with github desktop' te drukken:
+     <img width="1241" alt="image" src="https://github.com/user-attachments/assets/4472f294-646a-4d71-be83-b45faf0f27b4" />
+   - sla deze nu ergens op
 
-Welke pagina gaat naar wat?
+2. Download NoteJS: https://nodejs.org/en/download
 
+3. Open nu de console door cmd te typen in je searchbar van windows, of door bijvoorbeeld windows + r te op je keyboard te tikken, en vervolgens cmd te typen.
+    - https://www.lifewire.com/how-to-open-command-prompt-2618089#:~:text=Select%20the%20Start%20menu%20(the,Command%20Prompt%20from%20the%20list.
+      
+4. Installeer nu via Npm een liveserver.
+   - navigeer naar jouw repo (die opgeslagen is op je computer), in mijn geval staat deze in de S: schijf, maar vaak zal deze in je C: staan.
+   - Om te navigeren naar je schijf type de letter van die schijf, stel je wil in C: typen, gebruik dan :C, zit je in een D schijf, gebruik dan :D
+     <img width="889" alt="image" src="https://github.com/user-attachments/assets/f57d7146-88c5-47d1-b3f9-423e789fcdda" />
+   - Sleep de locatie in je console (of copy paste deze):
+     
+     https://github.com/user-attachments/assets/7a13077b-4893-4a07-81f5-7ae9376d8fd7
+     
+   - Type nu:
+     > Npm Install
+     <img width="865" alt="image" src="https://github.com/user-attachments/assets/f840921b-a927-4ed7-a462-bc72b2faa3b2" />
+   - Nu is de NoteJS geïnstalleerd op de Repo, Typ nu:
+     > Npm start
+     <img width="869" alt="image" src="https://github.com/user-attachments/assets/8f0365bc-5c5c-45d7-be4c-c7d4b1114cdc" />
+   - Je server opent nu op http://localhost:8000
+   - Om de server te sluiten, gebruik ctrl + c
+     
 
 
 
