@@ -139,6 +139,38 @@ In Express 4 kon je gebruik maken van het '*'. Dit betekent eigenlijk alles. Dus
 
 ## Installatie
 
+1. Fork deze Repo
+   - Je kan een Repo forken door rechtsboven op de fork te klikken en (create fork) te drukken:
+     <img width="1231" alt="image" src="https://github.com/user-attachments/assets/e0036e3b-0602-4d3c-ad11-ed496934ef8e" />
+   - Zorg ervoor dat je ook even github desktop download: https://desktop.github.com/download/
+   - Dit zorgt ervoor dat je de code kan kopiëren op jouw computer
+   - Dit doe je door op de grootte groene knop 'code' te drukken (in jouw geforkte repo) en dan op 'open with github desktop' te drukken:
+     <img width="1241" alt="image" src="https://github.com/user-attachments/assets/4472f294-646a-4d71-be83-b45faf0f27b4" />
+   - sla deze nu ergens op
+
+2. Download NoteJS: https://nodejs.org/en/download
+
+3. Open nu de console door cmd te typen in je searchbar van windows, of door bijvoorbeeld windows + r te op je keyboard te tikken, en vervolgens cmd te typen.
+    - https://www.lifewire.com/how-to-open-command-prompt-2618089#:~:text=Select%20the%20Start%20menu%20(the,Command%20Prompt%20from%20the%20list.
+      
+4. Installeer nu via Npm een liveserver.
+   - navigeer naar jouw repo (die opgeslagen is op je computer), in mijn geval staat deze in de S: schijf, maar vaak zal deze in je C: staan.
+   - Om te navigeren naar je schijf type de letter van die schijf, stel je wil in C: typen, gebruik dan :C, zit je in een D schijf, gebruik dan :D
+     <img width="889" alt="image" src="https://github.com/user-attachments/assets/f57d7146-88c5-47d1-b3f9-423e789fcdda" />
+   - Sleep de locatie in je console (of copy paste deze):
+     https://github.com/user-attachments/assets/7a13077b-4893-4a07-81f5-7ae9376d8fd7
+   - Type nu:
+     > Npm Install
+     <img width="865" alt="image" src="https://github.com/user-attachments/assets/f840921b-a927-4ed7-a462-bc72b2faa3b2" />
+   - Nu is de NoteJS geïnstalleerd op de Repo, Typ nu:
+     > Npm start
+     <img width="869" alt="image" src="https://github.com/user-attachments/assets/8f0365bc-5c5c-45d7-be4c-c7d4b1114cdc" />
+   - Je server opent nu op http://localhost:8000
+   - Om de server te sluiten, gebruik ctrl + c
+     
+
+
+
 
 
 
