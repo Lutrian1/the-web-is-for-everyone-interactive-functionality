@@ -89,6 +89,7 @@ header {
         align-items: center;
         .M{
             margin-right: 15px;
+            height: 76px;
             @media (min-width: 0px) {
                 margin-top: -10px;
             }

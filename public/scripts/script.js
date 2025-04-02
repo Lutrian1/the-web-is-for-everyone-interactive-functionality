@@ -24,9 +24,9 @@ if ('fetch' in window && 'DOMParser' in window) {
 
     // Voegt de classlist toe met animatie
 
-    let listbutton = form.querySelector('.add-remove-List-Button');
+    let listbutton = form.querySelector('.add-remove-List-Button')
     
-    listbutton.classList.add("load-State");
+    listbutton.classList.add("load-State")
 
     // Doe een fetch naar de server, net als hoe de browser dit normaal zou doen
     // Gebruik daarvoor het action en method attribuut van het originele formulier
