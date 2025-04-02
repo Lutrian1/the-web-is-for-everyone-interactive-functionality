@@ -37,7 +37,7 @@ In [Server-Side-Rendering](https://github.com/Lutrian1/server-side-rendering-ser
 
 ### Liquid 
 
-#### For Loop
+#### For Loop 
 
 In de for-loop wordt voor elke data uit Directus een artikel gemaakt met daarin specifieke dingen uit Directus. Dingen zoals de cadeaunaam of afbeelding kun je dan met een servercode meegeven in de for-loop.
 
@@ -53,19 +53,27 @@ https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/bl
 
 ### Specifieke gift page
 
-https://github.com/Lutrian1/server-side-rendering-server-side-website/blob/3610cfdfb0eb07aa231b6cdf48787bc3221ecf56/views/index.liquid#L49
-
 In mijn html creeër ik een pagina voor elke specifieke gift.
 
-https://github.com/Lutrian1/server-side-rendering-server-side-website/blob/26703c537048c3e73c18ae93ff8a6eb11479e43e/server.js#L51-L59
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/b1c3b2f8c72874f4eeb950d92bcaa4a19bcc4508/views/index.liquid#L35
 
-Nadat je hebt geklikt op een cadeau, fetched hij data uit Directus van dat specifieke cadeau en post dit in de HTML. De belangrijkste regel is de request.params.id. Dit zorgt ervoor dat de data dynamisch is, en ik voor elk cadeau dus een andere inhoud op de pagina heb.
+Nadat je hebt geklikt op een cadeau, fetched hij data uit Directus van dat specifieke cadeau en post dit in de HTML. De belangrijkste regel is de :id. Dit zorgt ervoor dat de data dynamisch is, en ik voor elk cadeau dus een andere inhoud op de pagina heb.
 
-### Save Button
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/b1c3b2f8c72874f4eeb950d92bcaa4a19bcc4508/server.js#L47-L54
 
-https://github.com/Lutrian1/server-side-rendering-server-side-website/blob/3610cfdfb0eb07aa231b6cdf48787bc3221ecf56/views/index.liquid#L51-L58
+### Save Button / Loading State
 
-In het kort geeft dit data mee aan een pagina die niet bestaat. Ik gebruik hiervoor een form met de action /save-gift. Het post het dus naar een link waar je niet naartoe kunt. Ik haal data uit deze link en toon het op een pagina waar je wel naartoe kunt navigeren:
+In mijn uitwerking liet ik kort zien hoe de button werkt. In [deze issue](https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/issues/6) vertel ik meer over de werking en wat ik eraan heb gedaan om de button te laten werken in mijn commits. Zoals ik al had verteld had ik in server-side-rendering ervoor gezorgd dat het lokaal werkte maar niet met een database. Als je nu een gift opslaat POST de save-button die specifieke gift nu naar de database:
+
+https://github.com/user-attachments/assets/3124a967-3f4b-4841-9d2d-b8ad1c3eb767
+
+Zoals je ziet komt er een 4e item (dus een nieuwe array) in de data for user 6 (Ik), user 6 hardcode ik mijn code zodat het alleen database post naar mijn user:
+
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/b1c3b2f8c72874f4eeb950d92bcaa4a19bcc4508/server.js#L7
+
+Ik gebruik die userID weer hier:
+
+
 
 https://github.com/Lutrian1/server-side-rendering-server-side-website/blob/26703c537048c3e73c18ae93ff8a6eb11479e43e/server.js#L61-L82
 
