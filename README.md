@@ -73,13 +73,27 @@ https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/bl
 
 Ik gebruik die userID weer hier:
 
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/8ee4b77412c593eb8cfd20f5067780baebc42bef/server.js#L75
 
+en hier:
 
-https://github.com/Lutrian1/server-side-rendering-server-side-website/blob/26703c537048c3e73c18ae93ff8a6eb11479e43e/server.js#L61-L82
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/8ee4b77412c593eb8cfd20f5067780baebc42bef/server.js#L93
 
-In regel 61 maak ik een lege array die wordt gevuld met data uit de save-knop. Deze array wordt meegegeven met een app.get naar de /mysavedgift (mygiftpage.liquid) in regel 61 tot 82.
+dit zorgt ervoor dat hij hem post op mijn UserID
 
-Om het specifieke cadeau toe te voegen, gebruik ik de GiftId variabele. De specifieke cadeaus worden uiteindelijk gepushed naar de saveGifts, en daarna geredirect naar de homepage.
+##### Loading State
+
+In deze sprint was het belangrijk om ook een loading state hierin te koppelen. In mijn javascript zorg ik ervoor dat stel het apparaat staat javascript toe (voor progressive enhacement), dat hij ervoor zorgt dat de default loading state van een browser (dus stel je zou een browser refreshen), weg word gehaald, en ik een custom loading state maak aan de button.
+
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/8ee4b77412c593eb8cfd20f5067780baebc42bef/public/scripts/script.js#L1-L60
+
+doormiddel van de 'data-enhanced' code in HTML zorg je ervoor, dat stel je browser/apparaat support 'data-enhanced' dat je de bovenstaande javascript invoert:
+
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/8ee4b77412c593eb8cfd20f5067780baebc42bef/views/index.liquid#L51
+
+Met deze 2 lines zorg ervoor dat ik mijn save button selecteer, en hieraan een animatie toevoeg die ik in css maak:
+
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/8ee4b77412c593eb8cfd20f5067780baebc42bef/public/css/stylesheet.css#L247-L265
 
 ### Reroute en 404.
 
