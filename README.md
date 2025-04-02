@@ -19,15 +19,16 @@ Ik koos ervoor om de resultaten die je naar de chatbot stuurt rechts te tonen, z
 
 ### Homepage
 
-Ik heb alleen gewerkt aan de styling van de homepage en een save-knop die ik in 'Kenmerken' laat zien. Mijn homepage ziet er nu zo uit:
+Ik heb voornamelijk gewerkt aan de styling van de homepage en een save-knop die ik in 'Kenmerken' laat zien. Mijn homepage ziet er nu zo uit:
 
-https://server-side-rendering-server-side-website-56rx.onrender.com
 
 #### Save-Button
 
 Momenteel is het belangrijkste in mijn site de 'save-button'. Deze knop kan cadeaus opslaan en deze tonen op de 'jouw cadeaus'-pagina. Dit is hoe het werkt:
 
-https://github.com/user-attachments/assets/cd4ed91e-428a-47ae-b705-9505baed3e39
+https://github.com/user-attachments/assets/e12574eb-44e8-441e-8fc8-81cf8387dc58
+
+In [Server-Side-Rendering](https://github.com/Lutrian1/server-side-rendering-server-side-website?tab=readme-ov-file#save-button) was dit enkel nog lokaal werkend en kon dit niet worden opgeslagen in de database. In deze sprint heb ik ervoor gezorgd dat deze werkt in de database in 'Kenmerken' Laat ik zien hoe ik dit heb gedaan. Daarnaast is hieraan ook een 'Loading-State' aan toegevoegd, ook hier vertel ik meer over in 'Kenmerken'
 
 #### Light House Test
 
