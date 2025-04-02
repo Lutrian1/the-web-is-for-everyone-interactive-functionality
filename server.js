@@ -90,7 +90,7 @@ app.post('/update-gift/:giftId', async function (request, response) {
         method: 'POST',
         body: JSON.stringify({
             milledoni_products_id: request.params.giftId,
-            milledoni_users_id: userID
+            milledoni_users_id: 6
         }),
         headers: {
             'Content-Type': 'application/json; charset=UTF-8'
