@@ -177,6 +177,8 @@ In Express 4 kon je gebruik maken van het '*'. Dit betekent eigenlijk alles. Dus
 
 ## Vragen
 
+https://github.com/user-attachments/assets/b1636afa-4535-4cfd-84af-1ec090e2a761
+
 Vragen over UI states. Volgorde veranderd.
 
 
