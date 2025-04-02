@@ -41,7 +41,7 @@ In [Server-Side-Rendering](https://github.com/Lutrian1/server-side-rendering-ser
 
 In de for-loop wordt voor elke data uit Directus een artikel gemaakt met daarin specifieke dingen uit Directus. Dingen zoals de cadeaunaam of afbeelding kun je dan met een servercode meegeven in de for-loop.
 
-[https://github.com/Lutrian1/server-side-rendering-server-side-website/blob/3610cfdfb0eb07aa231b6cdf48787bc3221ecf56/views/index.liquid#L47-L72](https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/df2e325248feabbacc68895dc132bfd5b71c9f6c/views/index.liquid#L34-L60)
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/dd934385735147b8882772e70b775cc181fcab5f/views/index.liquid#L34-L60
 
 De {{ gift.Image }} in de img src="" toont dus de afbeelding van Directus voor dat item. Hierdoor is elke data dynamisch.
 
