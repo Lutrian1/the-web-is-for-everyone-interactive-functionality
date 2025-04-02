@@ -158,7 +158,9 @@ In Express 4 kon je gebruik maken van het '*'. Dit betekent eigenlijk alles. Dus
    - Om te navigeren naar je schijf type de letter van die schijf, stel je wil in C: typen, gebruik dan :C, zit je in een D schijf, gebruik dan :D
      <img width="889" alt="image" src="https://github.com/user-attachments/assets/f57d7146-88c5-47d1-b3f9-423e789fcdda" />
    - Sleep de locatie in je console (of copy paste deze):
+     
      https://github.com/user-attachments/assets/7a13077b-4893-4a07-81f5-7ae9376d8fd7
+     
    - Type nu:
      > Npm Install
      <img width="865" alt="image" src="https://github.com/user-attachments/assets/f840921b-a927-4ed7-a462-bc72b2faa3b2" />
