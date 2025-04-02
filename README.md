@@ -101,31 +101,37 @@ animatie in css:
 
 https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/8ee4b77412c593eb8cfd20f5067780baebc42bef/public/css/stylesheet.css#L247-L265
 
+### Saved gifts page
+
+In de saved gift page toon ik de opgeslagen gifts voor een specifieke user.
+
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/5410563775e355846abaefd9c2aa7caef2dd4261/server.js#L119-L148
+
+Om ervoor te zorgen dat hij de volledige details (dus alle data) van een specifieke gift meeneemt (dus bijvoorbeeld de image), maak ik een lege array waaraan ik die data meegeef.
+
+in mijn HTML heb ik een if, else statement. Dat ervoor zorgt dat als er niks gesaved is, hij toned dat het mogelijk is om iets te saven. Een EMPTY-STATE dus:
+
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/5410563775e355846abaefd9c2aa7caef2dd4261/views/mygiftpage.liquid#L3-L21
+
 ### Reroute en 404.
 
-https://github.com/user-attachments/assets/553cfdf9-83e4-4daf-89b8-136db5a0a9a8
+https://github.com/user-attachments/assets/d7646737-f598-43a7-83b2-1220e5c89410
 
 #### Reroute: 
 
-https://github.com/Lutrian1/server-side-rendering-server-side-website/blob/3610cfdfb0eb07aa231b6cdf48787bc3221ecf56/server.js#L86-L88
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/5410563775e355846abaefd9c2aa7caef2dd4261/server.js#L154-L156
 
 Hierin word je teruggestuurd naar de lege pagina als je een verkeerde cadeau-ID invoert.
 
 #### 404:
 
-https://github.com/Lutrian1/server-side-rendering-server-side-website/blob/3610cfdfb0eb07aa231b6cdf48787bc3221ecf56/server.js#L91-L93
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/5410563775e355846abaefd9c2aa7caef2dd4261/server.js#L159-L161
 
 Als je een niet-bestaande route invoert, toont hij een 404-pagina. Ik render een 404-pagina met specifieke styling. Het belangrijkste is de response.status(404), zodat de browser weet dat dit een 404 is.
 
 #### Het gebruik van {*splat}
 
 In Express 4 kon je gebruik maken van het '*'. Dit betekent eigenlijk alles. Dus alles wat verkeerd wordt ingevoerd na een route (bijvoorbeeld: /oigwogee), wordt getoond als 404. In Express 5 wordt gebruik gemaakt van de *splat. Ik weet niet wat dit inhoudt, maar dit is nodig om dezelfde werking te behouden. Zie documentatie van Express.js: https://expressjs.com/en/guide/migrating-5.html#path-syntax
-
-### Vragen
-
-Veel staat in het Engels, maar de namen en dynamische data zijn allemaal in het Nederlands. Kan dit worden aangepast?
-
-Welke pagina gaat naar wat?
 
 
 
