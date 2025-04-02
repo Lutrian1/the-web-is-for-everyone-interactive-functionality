@@ -175,6 +175,9 @@ In Express 4 kon je gebruik maken van het '*'. Dit betekent eigenlijk alles. Dus
    - Om de server te sluiten, gebruik ctrl + c
      
 
+## Vragen
+
+Vragen over UI states. Volgorde veranderd.
 
 
 
