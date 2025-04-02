@@ -55,6 +55,10 @@ Hierin bevind zich ook een 'if' statement. Deze lijnen code zorgen ervoor dat de
 
 https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/df2e325248feabbacc68895dc132bfd5b71c9f6c/server.js#L71-L104
 
+om deze code een beetje uit te leggen kan je hier mijn pseudo code lezen:
+
+https://github.com/Lutrian1/the-web-is-for-everyone-interactive-functionality/blob/33efcc8d39dd404ed4f0b6f9c5c8b69ad972b71d/server.js#L58-L68
+
 ### Specifieke gift page
 
 In mijn html creeër ik een pagina voor elke specifieke gift.
